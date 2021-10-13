@@ -1,0 +1,9 @@
+browser->user: HTML NOTE
+#El user fills in the text field and taps save the note
+user->browser: New Note
+#All necessary data is collected at once,
+#all data is converted to json and sent to the server
+browser->server: https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+#Finally the server receives that the data is in json format and interprets them with js
+#You no longer need to redirect to any side just send the New Note for que se añada al dom
+server->browser: 201 create "New Note"

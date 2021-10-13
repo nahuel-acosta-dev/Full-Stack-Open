@@ -1,0 +1,5 @@
+#The browser makes a request to the server to add the new note
+browser-server httpsstudies.cs.helsinki.fiexampleappnew_note_spa
+#The server receives the note, interprets it through js, and responds
+#through the code 201 created by sending the new note to the page without the need for a redirect
+server-browser Code 201 Created

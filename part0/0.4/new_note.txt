@@ -1,0 +1,24 @@
+#The user types the note in the text entry and taps on send
+user->browser: New note
+#The browser sends the note provided by the user to the server
+browser->server: Http POST https://studies.cs.helsinki.fi/exampleapp/new_note
+#The server respond by sending the code 302
+server->browser: Code Http 302. Redireccion Url
+#Now the browser requests the updated list of notes
+browser->server: https://studies.cs.helsinki.fi/exampleapp/notes
+#The server responds by sending the updated html code
+server->browser: Codigo Html
+#Now the browser requests the css styles
+browser->server: https://studies.cs.helsinki.fi/exampleapp/main.css
+#The server responds by sending the css file
+server->browser: main.css
+#The browser requests the js code
+browser->server: https://studies.cs.helsinki.fi/exampleapp/main.js
+#The server responds by sending the js file
+server->browser: main.js
+#Now to be able to execute the js code you need the json data haci that asks the server
+browser->server: https://studies.cs.helsinki.fi/exampleapp/data.json
+#The server responds by sending json file
+server->browser: [{content:"Html is easy", date: "13/10/2021"}]
+#Finally with all the necessary data already collected, the page is shown to the user
+browser->user: HTML NOTE
