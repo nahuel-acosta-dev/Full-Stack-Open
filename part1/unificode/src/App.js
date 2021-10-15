@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './App.css';
 
-const Text = (props) => (
-  <div>
-    {props.title} {props.count}
-  </div>
+const Statistics = (props) => (
+  <tr>
+    <td>{props.title}</td>
+    <td>{props.count}</td>
+  </tr>
+
 )
 
 const Button = ({onClick, text}) => (
@@ -30,8 +32,13 @@ const App = () => {
   }
 
   const Valor = () =>  good + neutral + bad;
-  const Average = () => (good - bad) / (good + neutral + bad);
-  const Positive = () => 100 / (Valor() / good);
+  const Average = () =>{ 
+    if(Valor() !== 0) return (good - bad) / (good + neutral + bad)
+    else return 0};
+  const Positive = () =>{ 
+    if(Valor() !== 0) return 100 / (Valor() / good)
+    else return 0;
+  }
 
   return (
     <div>
@@ -40,12 +47,12 @@ const App = () => {
       <Button onClick = {plusNeutral} text = "neutral"/>
       <Button onClick = {plusBad} text = "bad"/>
       <h2>Statistics</h2>
-      <Text title ="Good" count = {good}/>
-      <Text title ="Neutral" count = {neutral}/>
-      <Text title ="Bad" count = {bad}/>
-      <Text title ="All" count = {Valor()}/>
-      <Text title ="Average" count = {Average()}/>
-      <Text title ="Positive" count = {Positive() + " %"}/>
+      <Statistics title ="Good" count = {good}/>
+      <Statistics title ="Neutral" count = {neutral}/>
+      <Statistics title ="Bad" count = {bad}/>
+      <Statistics title ="All" count = {Valor()}/>
+      <Statistics title ="Average" count = {Average()}/>
+      <Statistics title ="Positive" count = {Positive() + " %"}/>
     </div>
   )
 }
