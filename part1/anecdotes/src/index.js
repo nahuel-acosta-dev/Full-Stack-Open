@@ -19,25 +19,41 @@ const App = (props) => {
     else return setSelected(selected - 1)
 }
 
-const plusCopy = () => {
-  const copy = [...points];
-  copy[selected] += 1;
-  setCopy(copy)
+  const plusCopy = () => {
+    const copy = [...points];
+    copy[selected] += 1;
+    setCopy(copy)
 }
 
-
+  const votesAnecdotes = () => {
+    let max = Math.max.apply(null,points);
+    let position = points.indexOf(max);
+    if(max !== 0){
+      return (
+        <div>
+          <h1>Anecdote of the day</h1>
+            {props.anecdotes[position]}
+          <div>
+            has {points[position]} votes
+          </div>
+        </div>
+      )}
+    }
+ 
 
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {props.anecdotes[selected]}.
       <div>
         <div>
-          Vote {points[selected]}
+          has {points[selected]} Votes
         </div>
         <button onClick={plusCopy}>Vote</button>
         <Button onClick={Random} text="next selected"/>
       </div>
+      {votesAnecdotes()}
     </div>
   )
 }
