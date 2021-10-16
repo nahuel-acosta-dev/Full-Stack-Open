@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Button = ({onClick, text}) => (
-  <div>
+  <>
     <button onClick={onClick}>{text}</button> 
-  </div>
+  </>
 )
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [points, setCopy] = useState(new Uint8Array(6))
 
   const Random = () => {
     let random = Math.floor(Math.random() * 4)
@@ -17,10 +18,26 @@ const App = (props) => {
     else if(selected + 1 < 6)return setSelected(selected + 1);
     else return setSelected(selected - 1)
 }
+
+const plusCopy = () => {
+  const copy = [...points];
+  copy[selected] += 1;
+  setCopy(copy)
+}
+
+
+
+
   return (
     <div>
-      {props.anecdotes[selected]}
-      <Button onClick={Random} text="next selected"/>
+      {props.anecdotes[selected]}.
+      <div>
+        <div>
+          Vote {points[selected]}
+        </div>
+        <button onClick={plusCopy}>Vote</button>
+        <Button onClick={Random} text="next selected"/>
+      </div>
     </div>
   )
 }
