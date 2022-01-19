@@ -1,6 +1,5 @@
 const Persons = ({persons, newFilter}) => {
     const showPerson = (person) =>{
-        console.log("newFilter:" + newFilter)
         console.log(person.name.indexOf(newFilter))
         if(person.name.toLowerCase().indexOf(newFilter) !== -1 || newFilter === ""){
           return <p>{person.name}  {person.number}</p>
