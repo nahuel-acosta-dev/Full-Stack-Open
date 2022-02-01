@@ -1,33 +1,39 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import personsService from './../services/PersonsService';
 
-const PersonsForm = ({ persons, setPersons }) => {
+const PersonsForm = ({ persons, setPersons, getPersons }) => {
     const [ newName, setNewName ] = useState('');
     const [ newPhone, setNewPhone ] = useState('');
 
     const addPerson = (event) => {
         event.preventDefault();
+  
+        const newPersons = {
+          name: newName,
+          number: newPhone
+        }
+
         for(let person of persons) {
           console.log("show" + person)
-          if(person.name === newName)return alert(`${newName} is already added to phonebook`);
+          if(person.name.toLowerCase() === newName.toLowerCase()) {
+            const response = window.confirm(`${newName} is already added to phonebook, 
+            replace the old number with a new one?`);
+            if(response){
+              personsService
+              .update(person.id, newPersons)
+              .then(() => getPersons())
+              return false;
+            }
+          }
+          
         }
-        console.log('button clicked', newName);
+        console.log('button clicked', newName)
 
-         const newPersons = {
-           name: newName,
-           number: newPhone
-         }
-
-         axios
-          .post('http://localhost:3001/persons', newPersons)
-          .then(response => {
-            setPersons(persons.concat(response.data))
-          })
+          personsService
+          .create(newPersons)
+          .then(response => setPersons(persons.concat(response.data)))
 }
 
-
-      
-    
       const handleNameChange = (event) => {
         console.log(event.target.value);
         setNewName(event.target.value);

@@ -1,0 +1,13 @@
+.App {
+  margin-left: 10px;
+}
+
+.div-persons {
+  margin-top: 10px !important;
+}
+
+.btn-delete {
+  width: 150px !important;
+  padding-top: 2px !important;
+  height: 30px;
+}
