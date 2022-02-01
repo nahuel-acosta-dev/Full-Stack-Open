@@ -1,0 +1,28 @@
+.principal {
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.search {
+  border-radius: 6px;
+  height: 25px;
+}
+
+.button-show {
+  height: 20px;
+  width: 150px !important;
+  padding-top: 1px !important;
+  font-size: 0.7rem !important;
+}
+
+.country {
+  margin-top: 10px;
+}
+
+.bandera {
+  width: 20%;
+}
+
+.weather {
+  margin-top: 10px;
+}
