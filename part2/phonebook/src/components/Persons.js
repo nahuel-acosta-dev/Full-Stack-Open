@@ -1,4 +1,4 @@
-const Persons = ({persons, newFilter}) => {
+const persons = ({persons, newFilter}) => {
     const showPerson = (person) =>{
         console.log(person.name.indexOf(newFilter))
         if(person.name.toLowerCase().indexOf(newFilter) !== -1 || newFilter === ""){
@@ -21,4 +21,4 @@ const Persons = ({persons, newFilter}) => {
     )
 }
 
-export default Persons;
+export default persons;

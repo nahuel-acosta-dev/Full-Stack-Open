@@ -2,32 +2,28 @@ import React, { useState, useEffect } from 'react';
 import PersonForm from './components/PersonForm';
 import Filter from './components/Filter';
 import Persons from './components/Persons';
+import personsService from './services/PersonsService'
 import axios from 'axios';
 //import Note from './components/Note'
 
 
 const App = () => {
-  const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas', number: '040-123456'},
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ]);
   const [ newFilter, setNewFilter ] = useState('');
-  const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState('');
-  const [showAll, setShowAll] = useState(true);
-
+  const [persons, setPersons] = useState([]);
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
+    const newLocal = 'http://localhost:3001/persons';
+    /*axios
+      .get(newLocal)
       .then(response => {
         console.log('promise fulfilled')
-        setNotes(response.data)
-      })
+        setPersons(response.data)
+      })*/
+      personsService
+      .getAll()
+      .then(response => setPersons(response.data))
   }, [])
-  console.log('render', notes, 'notes')
+  console.log('render', persons, 'persons')
 
   return (
     <div>
@@ -37,7 +33,7 @@ const App = () => {
       <PersonForm persons={persons} setPersons={setPersons}/>
       <h2>Numbers</h2>
       <div>
-      <Persons persons={notes} newFilter={newFilter}/>
+      <Persons persons={persons} newFilter={newFilter}/>
       </div>
     </div>
   )
