@@ -1,6 +1,6 @@
 import personsService from './../services/PersonsService';
 
-const persons = ({persons, newFilter, getPersons}) => {
+const persons = ({persons, newFilter, getPersons, setVisibility, setName}) => {
 
     const deletePersons = (person) => {
       const response = window.confirm(`Delete ${person.name}`)
@@ -9,8 +9,14 @@ const persons = ({persons, newFilter, getPersons}) => {
       .deletePerson(person.id)
       .then(() => {
         getPersons();
-        return showPersons();
-      })}      
+        setVisibility('delete');
+        setName(person.name);
+        showPersons();
+        return setTimeout(() => {
+          setVisibility('')
+        }, 5000)
+      })}
+      else return false;      
     }
 
     const showPerson = (person) =>{
@@ -29,8 +35,8 @@ const persons = ({persons, newFilter, getPersons}) => {
     const showPersons = () =>{
       return (
         <>
-          {persons.map(person => (
-            <div key={person.name}>
+          {persons.map((person, i) => (
+            <div key={i}>
               {showPerson(person)}
             </div>
           ))}

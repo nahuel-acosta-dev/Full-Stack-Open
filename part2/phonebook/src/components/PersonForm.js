@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import personsService from './../services/PersonsService';
 
-const PersonsForm = ({ persons, setPersons, getPersons }) => {
+const PersonsForm = ({ persons, setPersons, getPersons, setVisibility, setName }) => {
     const [ newName, setNewName ] = useState('');
     const [ newPhone, setNewPhone ] = useState('');
 
@@ -21,9 +21,16 @@ const PersonsForm = ({ persons, setPersons, getPersons }) => {
             if(response){
               personsService
               .update(person.id, newPersons)
-              .then(() => getPersons())
+              .then(() => {getPersons();
+                setVisibility('added');
+                setName(person.name);
+                setTimeout(() => {
+                  setVisibility('')
+                }, 5000)
+              })
               return false;
             }
+            else return false;
           }
           
         }
@@ -31,8 +38,18 @@ const PersonsForm = ({ persons, setPersons, getPersons }) => {
 
           personsService
           .create(newPersons)
-          .then(response => setPersons(persons.concat(response.data)))
-}
+          .then(response => {setPersons(persons.concat(response.data))
+            setVisibility('added');
+            setName(response.data.name)
+            setTimeout(() => {
+              setVisibility('')
+            }, 5000)
+          
+            return false;
+            
+          })
+          
+  }
 
       const handleNameChange = (event) => {
         console.log(event.target.value);

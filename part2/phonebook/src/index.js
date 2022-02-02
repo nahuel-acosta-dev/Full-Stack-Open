@@ -7,11 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import axios from 'axios';
 
-const promise = axios.get('http://localhost:3001/notes')
-console.log(promise)
+//const promise = axios.get('http://localhost:3001/notes')
+//console.log(promise)
 
-const promise2 = axios.get('http://localhost:3001/foobar')
-console.log(promise2)
+//const promise2 = axios.get('http://localhost:3001/foobar')
+//console.log(promise2)
 
 ReactDOM.render(<App />, document.getElementById('root'))
 // If you want to start measuring performance in your app, pass a function

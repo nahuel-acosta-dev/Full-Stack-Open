@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .App {
   margin-left: 10px;
 }
@@ -10,4 +14,24 @@
   width: 150px !important;
   padding-top: 2px !important;
   height: 30px;
+}
+
+.add {
+  color: green;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.delete {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
